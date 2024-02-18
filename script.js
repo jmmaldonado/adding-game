@@ -20,13 +20,14 @@ let wrongScoreValue = 0;
 
 let correctAnswer;
 let difficulty = 3
+let enabledButtons = true
 
 function generateProblem() {
     const emoji = emojiMap[Math.floor(Math.random() * emojiMap.length)]
     problem.innerHTML = '';
     feedback.textContent = '';
     correctAnswer = 0
-    restoreAnswerButtons()
+    restoreButtons()
 
     for (let i = 0; i < difficulty; i++) {
         let tile = document.createElement('div');
@@ -44,7 +45,7 @@ function generateProblem() {
         tile.appendChild(number)
 
         problem.appendChild(tile)
-        if (i < difficulty-1) {
+        if (i < difficulty - 1) {
             let plusSign = document.createElement('span')
             plusSign.textContent = "+"
             problem.appendChild(plusSign)
@@ -78,17 +79,20 @@ function checkAnswer(chosenOption) {
         wrongScoreValue++;
         return false
     }
-    
+
 }
 
 function handleAnswerClick(event, answer) {
-    if (checkAnswer(answer)) {
-        document.querySelectorAll("#answers button").forEach((el) => {if (el != event.srcElement) el.style.opacity = 0})
-        event.srcElement.classList.remove('button-84')
-        event.srcElement.classList.add('button-85')
-        console.log(event)
+    if (enabledButtons) {
+        if (checkAnswer(answer)) {
+            enabledButtons = false
+            document.querySelectorAll("#answers button").forEach((el) => { if (el != event.srcElement) el.style.opacity = 0 })
+            event.srcElement.classList.remove('button-84')
+            event.srcElement.classList.add('button-85')
+            console.log(event)
+        }
+        updateScoreUI()
     }
-    updateScoreUI()
 }
 
 function sayCorrect() {
@@ -100,8 +104,9 @@ function sayCorrect() {
 
 }
 
-function restoreAnswerButtons() {
-    document.querySelectorAll("#answers button").forEach((el) => { 
+function restoreButtons() {
+    enabledButtons = true
+    document.querySelectorAll("#answers button").forEach((el) => {
         el.style.opacity = 100;
         el.classList = ['button-84']
 
@@ -117,9 +122,5 @@ option1.addEventListener('click', (event) => handleAnswerClick(event, option1.te
 option2.addEventListener('click', (event) => handleAnswerClick(event, option2.textContent));
 option3.addEventListener('click', (event) => handleAnswerClick(event, option3.textContent));
 
-nextQuestionBtn.addEventListener('click', () => {
-    generateProblem();
-    feedback.textContent = ""; // Clear feedback for next question
-});
 
 generateProblem()
