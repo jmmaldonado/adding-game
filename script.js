@@ -56,11 +56,13 @@ function generateProblem() {
 
     const wrongAnswers = [];
 
-    for (let j = 0; j < 2; j++) {
-        wrongAnswers.push(correctAnswer + Math.floor(Math.random() * 7) - 2);
-    }
+    // for (let j = 0; j < 2; j++) {
+    //     wrongAnswers.push(correctAnswer + Math.floor(Math.random() * 7) - 2);
+    // }
 
+    wrongAnswers.push(correctAnswer + 1);
     wrongAnswers.push(correctAnswer);
+    wrongAnswers.push(correctAnswer - 1);
     wrongAnswers.sort(() => Math.random() - 0.5);
 
     option1.textContent = wrongAnswers[0];
