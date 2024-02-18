@@ -106,16 +106,6 @@ body {
     font-weight: bold;
 }
 
-#next-question {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    margin-top: 30px;
-    width: 100%;
-}
 
 .emoji {
     font-size: 24px;
