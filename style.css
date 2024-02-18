@@ -13,6 +13,7 @@ body {
     align-items: center;
     justify-items: center;
     gap: 10px;
+    width: 100%;
   }
    
 
@@ -57,9 +58,11 @@ body {
     font-size: 48px;
     margin-bottom: 20px;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
     flex-direction: row;
     display: flex;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .tile {
@@ -76,13 +79,13 @@ body {
     justify-content: space-between;
     padding: 5px;
     padding-bottom: 15px;
-    /* font-size: 48px; */
 }
 
 #answers {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    margin-top: 50px;
 }
 
  #answers button {
@@ -231,8 +234,34 @@ body {
   box-shadow: rgba(0, 0, 0, .5) 0 0 0 3px;
 }
 
-/* @media (max-width: 420px) {
-  .button-84 {
-    height: 48px;
+
+
+
+select {
+    /* Reset */
+    appearance: none;
+    border: 1px solid hsl(204, 79%, 40%);
+    outline: 0;
+    font: inherit;
+    /* Personalize */
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
+    background: var(--arrow-icon) no-repeat right 0.8em center / 1.4em,
+      linear-gradient(to left, var(--arrow-bg) 3em, var(--select-bg) 3em);
+    color: hsl(204, 79%, 40%);
+    border-radius: 0.25em;
+    box-shadow: 0 0 0em 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    /* Remove IE arrow */
+    &::-ms-expand {
+      display: none;
+    }
+    /* Remove focus outline */
+    &:focus {
+      outline: none;
+    }
+    /* <option> colors */
+    option {
+      color: inherit;
+      background-color: var(--option-bg);
+    }
   }
-} */
