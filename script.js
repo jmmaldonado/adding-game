@@ -19,7 +19,7 @@ let correctScoreValue = 0;
 let wrongScoreValue = 0;
 
 let correctAnswer;
-let difficulty = 3
+let difficulty = 2
 let enabledButtons = true
 
 function generateProblem() {
@@ -28,6 +28,8 @@ function generateProblem() {
     feedback.textContent = '';
     correctAnswer = 0
     restoreButtons()
+    difficulty = parseInt(document.getElementById('difficulty-level').value);
+
 
     for (let i = 0; i < difficulty; i++) {
         let tile = document.createElement('div');
@@ -121,6 +123,6 @@ function updateScoreUI() {
 option1.addEventListener('click', (event) => handleAnswerClick(event, option1.textContent));
 option2.addEventListener('click', (event) => handleAnswerClick(event, option2.textContent));
 option3.addEventListener('click', (event) => handleAnswerClick(event, option3.textContent));
-
+document.getElementById('difficulty-level').addEventListener('change', generateProblem)
 
 generateProblem()
