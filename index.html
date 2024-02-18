@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addition Fun!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="header" class="header">
+        <h2>Let's add</h2>
+        <div class="header-right">
+            <div id="correctAnswers">✅<span id="correct-score-value">0</span></div>
+            <div id="wrongAnswers"><span style="filter: hue-rotate(210deg);">❎</span><span id="wrong-score-value">0</span></div>
+        </div>
+    </div>
+    <div id="game-container">
+        <div id="problem">
+        </div>
+        <div id="answers">
+            <button class="button-84" id="option1"></button>
+            <button class="button-84" id="option2"></button>
+            <button class="button-84" id="option3"></button>
+        </div>
+        <button id="next-question">Next Question</button>
+        <div id="feedback"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
