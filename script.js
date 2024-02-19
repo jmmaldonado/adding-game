@@ -56,10 +56,6 @@ function generateProblem() {
 
     const wrongAnswers = [];
 
-    // for (let j = 0; j < 2; j++) {
-    //     wrongAnswers.push(correctAnswer + Math.floor(Math.random() * 7) - 2);
-    // }
-
     wrongAnswers.push(correctAnswer + 1);
     wrongAnswers.push(correctAnswer);
     wrongAnswers.push(correctAnswer - 1);
@@ -68,8 +64,6 @@ function generateProblem() {
     option1.textContent = wrongAnswers[0];
     option2.textContent = wrongAnswers[1];
     option3.textContent = wrongAnswers[2];
-
-    //return correctAnswer;
 }
 
 function checkAnswer(chosenOption) {
@@ -87,26 +81,39 @@ function checkAnswer(chosenOption) {
 }
 
 function handleAnswerClick(event, answer) {
+    let phrase = ""
     if (enabledButtons) {
-        if (checkAnswer(answer)) {
-            enabledButtons = false
+        enabledButtons = false
+
+        if (parseInt(answer) === correctAnswer) {
+            feedback.textContent = "Correct!";
+            correctScoreValue++;
+
             document.querySelectorAll("#answers button").forEach((el) => { if (el != event.srcElement) el.style.opacity = 0 })
             event.srcElement.classList.remove('button-84')
             event.srcElement.classList.add('button-85')
-            console.log(event)
+
+            phrase = "Correct"
+            
+        } else {
+            phrase = `Oops! The correct answer is ${correctAnswer}.`;
+            feedback.textContent = phrase
+            wrongScoreValue++;
         }
+
+        speak(phrase)
         updateScoreUI()
     }
 }
 
-function sayCorrect() {
-    const utterance = new SpeechSynthesisUtterance("Correct.");
-    utterance.pitch = 5
+function speak(phrase) {
+    const utterance = new SpeechSynthesisUtterance(phrase);
+    utterance.pitch = 1
     utterance.lang = "en-EN";
     speechSynthesis.speak(utterance);
     setTimeout(generateProblem, 5000)
-
 }
+
 
 function restoreButtons() {
     enabledButtons = true
